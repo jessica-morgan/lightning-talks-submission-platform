@@ -4,7 +4,7 @@ exports.up = function (knex) {
     table.string('email').unique().references('members.email')
     table.string('topic')
     table.string('synopsis')
-    table.timestamp('submission_time')
+    table.string('submission_time')
     table.string('lightning_talk_date')
   })
 }
