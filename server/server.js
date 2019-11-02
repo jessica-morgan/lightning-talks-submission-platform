@@ -11,8 +11,10 @@ server.use(function (req, res, next) {
 })
 
 const authRoutes = require('./routes/auth')
+const submissionRoutes = require('./routes/submissions')
 
 server.use('/api/v1/auth', authRoutes)
+server.use('/api/v1/submissions', submissionRoutes)
 
 server.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/index.html'))
