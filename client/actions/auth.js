@@ -41,9 +41,9 @@ export const registerError = error => {
   }
 }
 
-export const signin = (user) => dispatch => {
+export const signin = (member) => dispatch => {
   dispatch(signinPending())
-  return signinApi(user)
+  return signinApi(member)
     .then(res => {
       setToken(res.token)
       setUserId(res.userId)
@@ -55,9 +55,9 @@ export const signin = (user) => dispatch => {
 }
 
 // Register action
-export const register = (user) => dispatch => {
+export const register = (member) => dispatch => {
   dispatch(registerPending())
-  return registerApi(user)
+  return registerApi(member)
     .then(res => {
       setToken(res.token)
       setUserId(res.userId)
