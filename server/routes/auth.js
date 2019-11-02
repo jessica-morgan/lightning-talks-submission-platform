@@ -1,17 +1,14 @@
 const express = require('express')
-const db = require('../db/users')
+const db = require('../db/members')
 const router = express.Router()
 const token = require('../auth/token')
 const hash = require('../auth/hash')
 
 router.post('/register', validateRegister, register, token.issue)
-router.post('/signin', validateLogin, checkUser, token.issue)
+router.post('/signin', validateLogin, checkMember, token.issue)
 
 function validateRegister (req, res, next) {
-  const { username, email, password } = req.body
-  if (!username) {
-    return next(new Error('No username provided'))
-  }
+  const { email, password } = req.body
   if (!email) {
     return next(new Error('No email provided'))
   }
@@ -23,22 +20,22 @@ function validateRegister (req, res, next) {
 }
 
 function register (req, res, next) {
-  db.registerUser(req.body)
-    .then((user) => {
-      res.locals.userId = user[0]
+  db.registerMember(req.body)
+    .then((member) => {
+      res.locals.userId = member[0]
       next()
     })
     .catch(({ message }) => {
-      message.includes('UNIQUE constraint failed: users.username')
-        ? registrationError(res, 'User already exists.', 400)
+      message.includes('UNIQUE constraint failed: member.email')
+        ? registrationError(res, 'member already exists.', 400)
         : registrationError(res, `Something bad happened. We don't know why.`, 500)
     })
 }
 
 function validateLogin (req, res, next) {
-  const { username, password } = req.body
-  if (!username) {
-    return next(new Error('No username provided'))
+  const { email, password } = req.body
+  if (!email) {
+    return next(new Error('No email provided'))
   }
   if (!password) {
     return next(new Error('No password provided'))
@@ -47,11 +44,11 @@ function validateLogin (req, res, next) {
   next()
 }
 
-function checkUser (req, res, next) {
-  db.getUser(req.body)
-    .then(user => {
-      if (user) res.locals.userId = user.id
-      return user && hash.verify(user.hash, req.body.password)
+function checkMember (req, res, next) {
+  db.getMember(req.body)
+    .then(member => {
+      if (member) res.locals.memberId = member.id
+      return member && hash.verify(member.hash, req.body.password)
     })
     .then(isValid => {
       return isValid ? next() : invalidCredentials(res)
