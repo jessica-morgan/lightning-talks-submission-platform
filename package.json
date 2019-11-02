@@ -7,7 +7,7 @@
     "start": "webpack && node server",
     "dev": "nodemon --watch server & webpack --watch",
     "test": "jest --watchAll --noStackTrace",
-    "knex": "knex --knexfile server/db/knexfile.js",
+    "knex": "knex --knexfile ./knexfile.js",
     "db:reset": "run-s db:delete db:migrate db:seed",
     "db:migrate": "npm run knex migrate:latest",
     "db:seed": "npm run knex seed:run",
@@ -18,11 +18,8 @@
   "license": "ISC",
   "babel": {
     "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react"
-    ],
-    "plugins": [
-      "@babel/plugin-proposal-class-properties"
+      "env",
+      "react"
     ]
   },
   "jest": {
@@ -31,15 +28,14 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.4.3",
-    "@babel/plugin-proposal-class-properties": "^7.4.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.4.3",
-    "@babel/preset-env": "^7.4.3",
-    "@babel/preset-react": "^7.0.0",
-    "babel-loader": "^8.0.5",
-    "babel-polyfill": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.3",
+    "@babel/preset-react": "^7.0.0",
+    "babel-polyfill": "^6.26.0",
     "jest": "^24.9.0",
     "react-router-dom": "^5.0.1",
     "nodemon": "^1.18.10",
@@ -59,7 +55,8 @@
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.19.5",
     "libsodium-wrappers": "^0.7.6",
+    "libsodium-wrappers-sumo": "^0.7.6",
     "npm-run-all": "^4.1.5",
-    "webpack": "^4.29.6"
+    "webpack": "^3.11.0"
   }
 }
