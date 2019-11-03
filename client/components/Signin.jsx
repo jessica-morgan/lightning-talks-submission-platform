@@ -51,11 +51,11 @@ class Signin extends React.Component {
               variant="outlined"
               type="password"
               onChange={this.handleChange} ></TextField>
-            <Button variant="contained" color="primary" onClick={this.handleSubmit}>
+            <Button variant="contained" style={{ backgroundColor: 'lightGray', color: 'black' }} onClick={this.handleSubmit}>
               Login
             </Button>
             <h3>Don't have an account? </h3>
-            <Link to='/register'><Button variant="contained" color="primary" >
+            <Link to='/register' style={{ textDecoration: 'none' }}><Button variant="contained" style={{ backgroundColor: 'lightGray', color: 'black' }} >
               Register
             </Button>
             </Link>

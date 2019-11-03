@@ -51,12 +51,12 @@ class Register extends React.Component {
               variant="outlined"
               type="password"
               onChange={this.handleChange} ></TextField>
-            <Link to='/' onClick={this.handleSubmit}><Button variant="contained" color="primary" >
+            <Link to='/' onClick={this.handleSubmit}><Button variant="contained" style={{ backgroundColor: 'lightGray', color: 'black' }} >
               Register
             </Button>
             </Link>
             <h3>Already have an account? </h3>
-            <Link to='/'><Button variant="contained" color="primary" >
+            <Link to='/' style={{ textDecoration: 'none' }}><Button variant="contained" style={{ backgroundColor: 'lightGray', color: 'black' }} >
               Login
             </Button>
             </Link>
