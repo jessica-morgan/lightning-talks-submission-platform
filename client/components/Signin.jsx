@@ -37,25 +37,28 @@ class Signin extends React.Component {
     return (
       <div>
         <form>
-          <Grid container direction="column" justify="center" alignItems="center">
+          <Grid container direction="column" justify="center" alignItems="center" style={{ background: 'rgb(210, 210, 210)', borderRadius: '0.5vw', width: '30vw', height: '58vh', margin: 'auto', opacity: '0.8', marginTop: '13vh' }}>
+            <h3 style={{ color: 'black', fontWeight: 'lighter', fontSize: '2.5vh' }}>Please sign in </h3>
             <TextField
+              style={{ background: 'white', borderRadius: '0.5vw' }}
               label="email"
               margin="normal"
               name="email"
               variant="outlined"
               onChange={this.handleChange}></TextField>
             <TextField
+              style={{ background: 'white', borderRadius: '0.5vw' }}
               label="password"
               margin="normal"
               name="password"
               variant="outlined"
               type="password"
               onChange={this.handleChange} ></TextField>
-            <Button variant="contained" style={{ backgroundColor: 'lightGray', color: 'black' }} onClick={this.handleSubmit}>
+            <Button variant="contained" style={{ backgroundColor: 'white', color: 'black', marginBottom: '4vh' }} onClick={this.handleSubmit}>
               Login
             </Button>
-            <h3>Don't have an account? </h3>
-            <Link to='/register' style={{ textDecoration: 'none' }}><Button variant="contained" style={{ backgroundColor: 'lightGray', color: 'black' }} >
+            <h3 style={{ color: 'black', fontWeight: 'lighter', fontSize: '2.5vh' }}>Don't have an account? </h3>
+            <Link to='/register' style={{ textDecoration: 'none' }}><Button variant="contained" style={{ backgroundColor: 'white', color: 'black' }} >
               Register
             </Button>
             </Link>

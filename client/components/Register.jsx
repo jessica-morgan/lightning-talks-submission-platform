@@ -37,26 +37,29 @@ class Register extends React.Component {
     return (
       <div>
         <form>
-          <Grid container direction="column" justify="center" alignItems="center">
+          <Grid container direction="column" justify="center" alignItems="center" style={{ background: 'rgb(210, 210, 210)', borderRadius: '0.5vw', width: '30vw', height: '58vh', margin: 'auto', opacity: '0.8', marginTop: '13vh' }}>
+            <h3 style={{ color: 'black', fontWeight: 'lighter', fontSize: '2.5vh' }}>Create account</h3>
             <TextField
+              style={{ background: 'white', borderRadius: '0.5vw' }}
               label="email"
               margin="normal"
               name="email"
               variant="outlined"
               onChange={this.handleChange}></TextField>
             <TextField
+              style={{ background: 'white', borderRadius: '0.5vw' }}
               label="password"
               margin="normal"
               name="password"
               variant="outlined"
               type="password"
               onChange={this.handleChange} ></TextField>
-            <Link to='/' onClick={this.handleSubmit}><Button variant="contained" style={{ backgroundColor: 'lightGray', color: 'black' }} >
+            <Link to='/' style={{ textDecoration: 'none' }} onClick={this.handleSubmit}><Button variant="contained" style={{ backgroundColor: 'white', color: 'black', marginBottom: '4vh' }} >
               Register
             </Button>
             </Link>
-            <h3>Already have an account? </h3>
-            <Link to='/' style={{ textDecoration: 'none' }}><Button variant="contained" style={{ backgroundColor: 'lightGray', color: 'black' }} >
+            <h3 style={{ color: 'black', fontWeight: 'lighter', fontSize: '2.5vh' }}>Already have an account? </h3>
+            <Link to='/' style={{ textDecoration: 'none' }}><Button variant="contained" style={{ backgroundColor: 'white', color: 'black' }} >
               Login
             </Button>
             </Link>
