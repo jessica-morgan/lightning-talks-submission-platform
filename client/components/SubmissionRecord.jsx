@@ -53,8 +53,8 @@ class Home extends React.Component {
           {this.state.submissions ? this.state.submissions.map(submission => {
             return <Container key={submission.id} maxWidth="sm">
               <h3 style={{ fontSize: '2.5vh', fontWeight: 'lighter' }}>{submission.topic}</h3>
-              <p >Synopsis: </p>
               <p style={{ fontSize: '2.3vh' }}>{submission.synopsis}</p>
+              <hr/>
             </Container>
           })
             : <Container maxWidth="sm">

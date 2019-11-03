@@ -37,7 +37,7 @@ class Register extends React.Component {
     return (
       <div>
         <form>
-          <Grid container direction="column" justify="center" alignItems="center" style={{ background: 'rgb(210, 210, 210)', borderRadius: '0.5vw', width: '30vw', height: '58vh', margin: 'auto', opacity: '0.8', marginTop: '13vh' }}>
+          <Grid container direction="column" justify="center" alignItems="center" style={{ background: 'rgb(210, 210, 210)', borderRadius: '0.5vw', width: '30vw', height: '70vh', margin: 'auto', opacity: '0.8', marginTop: '13vh' }}>
             <h3 style={{ color: 'black', fontWeight: 'lighter', fontSize: '2.5vh' }}>Create account</h3>
             <TextField
               style={{ background: 'white', borderRadius: '0.5vw' }}
@@ -45,6 +45,7 @@ class Register extends React.Component {
               margin="normal"
               name="email"
               variant="outlined"
+              type="email"
               onChange={this.handleChange}></TextField>
             <TextField
               style={{ background: 'white', borderRadius: '0.5vw' }}
@@ -54,6 +55,7 @@ class Register extends React.Component {
               variant="outlined"
               type="password"
               onChange={this.handleChange} ></TextField>
+            {this.props.error ? <p style={{ color: 'black', marginBottom: '4vh' }}>Email already exsits, please login</p> : <div></div>}
             <Link to='/' style={{ textDecoration: 'none' }} onClick={this.handleSubmit}><Button variant="contained" style={{ backgroundColor: 'white', color: 'black', marginBottom: '4vh' }} >
               Register
             </Button>
