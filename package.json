@@ -13,8 +13,7 @@
     "db:reset": "run-s db:delete db:migrate db:seed",
     "db:migrate": "npm run knex migrate:latest",
     "db:seed": "npm run knex seed:run",
-    "db:delete": "rm -f server/db/dev.sqlite3",
-    "postinstall": "run-s db:migrate db:seed"
+    "db:delete": "rm -f server/db/dev.sqlite3"
   },
   "author": "Jessica Morgan",
   "license": "ISC",
@@ -34,6 +33,7 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.4.3",
     "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-loader": "^7.1.2",
     "babel-polyfill": "^6.26.0",
     "jest": "^24.9.0",
