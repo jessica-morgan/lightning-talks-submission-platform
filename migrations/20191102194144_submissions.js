@@ -1,7 +1,7 @@
 exports.up = function (knex) {
   return knex.schema.createTable('submissions', table => {
     table.increments('id').primary()
-    table.string('email').unique().references('members.email')
+    table.string('user_id').unique().references('members.id')
     table.string('topic')
     table.string('synopsis')
     table.string('submission_time')
