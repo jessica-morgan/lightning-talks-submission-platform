@@ -11,10 +11,19 @@ export function getSubmissionsApi () {
     })
 }
 
-export const newSubmissionApi = (submission) => {
+export function newSubmissionApi (submission) {
+  const date = new Date()
+  const newSubmission = {
+    userId: submission.userId,
+    topic: submission.topic,
+    synopsis: submission.synopsis,
+    email: submission.email,
+    lightning_talk_date: submission.time,
+    submission_time: date
+  }
   return request
     .post(`${url}/new`)
-    .send(submission)
+    .send(newSubmission)
     .then(res => res.body)
     .catch(err => {
       if (err) throw Error('Cannot post submission')
