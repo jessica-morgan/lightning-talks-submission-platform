@@ -33,7 +33,6 @@ class Register extends React.Component {
       return <Redirect to='/home' />
     }
 
-    const { email, password } = this.state
     return (
       <div>
         <form>
