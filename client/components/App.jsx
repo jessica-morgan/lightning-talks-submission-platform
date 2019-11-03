@@ -1,19 +1,17 @@
 import React from 'react'
-import {Route, Switch, withRouter, Redirect} from 'react-router-dom'
-import {connect} from 'react-redux'
+import { Route, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
 import Signin from './Signin'
 import Home from './Home'
+import Register from './Register'
 
 class App extends React.Component {
-  componentDidMount () {
-    this.props.dispatch(getEmotions())
-  }
-
   render () {
     return (
       <div>
-          <Route exact path='/' component={Home} />
-          <Route path='/signin' component={Signin} />
+        <Route exact path='/' component={Signin} />
+        <Route path='/home' component={Home} />
+        <Route path='/register' component={Register} />
       </div>
     )
   }
