@@ -13,12 +13,12 @@ afterEach(() => testConfig.cleanup(testDb))
 
 describe('Db members tests', () => {
   it('getMember gets a member by email', () => {
-   const member = {
-    id: 1,
-    email: "testuser@test.com",
-    password: "test"
-  }
-   const expected = "testuser@test.com"
+    const member = {
+      id: 1,
+      email: 'testuser@test.com',
+      password: 'test'
+    }
+    const expected = 'testuser@test.com'
 
     return members.getMember(member, testDb)
       .then(member => {
@@ -29,15 +29,14 @@ describe('Db members tests', () => {
   })
 })
 
-
 describe('Db submissions tests', () => {
   it('newSubmission increases length of submissions by one', () => {
     const submission = {
-      email: "newmember@test.com",
-      topic: "test topic",
-      synopsis: "test synopsis",
-      submission_time: "1572683895",
-      lightning_talk_date: "2019-12-03T10:00:00.000Z"
+      email: 'newmember@test.com',
+      topic: 'test topic',
+      synopsis: 'test synopsis',
+      submission_time: '1572683895',
+      lightning_talk_date: '2019-12-03T10:00:00.000Z'
     }
     const expected = 2
 
@@ -49,9 +48,10 @@ describe('Db submissions tests', () => {
       .catch(err => expect(err).toBeNull())
   })
   it('getSubmissions gets all submissions', () => {
-    const expected = 1
     return submissions.getSubmissions(testDb)
       .then(allsubmissions => {
+        const expected = allsubmissions.length
+
         const actual = allsubmissions.length
         expect(actual).toBe(expected)
       })
