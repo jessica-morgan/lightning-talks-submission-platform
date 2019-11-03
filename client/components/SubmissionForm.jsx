@@ -1,8 +1,9 @@
 import React from 'react'
 import { withRouter, Redirect, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { newSubmissionApi } from '../api/submissions'
+import { newSubmissionApi, getSubmissionsApi } from '../api/submissions'
 import { logout } from '../actions/auth'
+import { submissionError, submissionVerified } from '../actions/submissions'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
@@ -19,8 +20,19 @@ class SubmissionForm extends React.Component {
       topic: '',
       synopsis: '',
       email: '',
-      time: ''
+      time: '',
+      submissions: '',
+      submissionError: false
     }
+  }
+
+  componentDidMount () {
+    getSubmissionsApi()
+      .then(submissions => {
+        this.setState({
+          submissions: submissions
+        })
+      })
   }
 
   handleClick = (e) => {
@@ -35,7 +47,11 @@ class SubmissionForm extends React.Component {
   }
 
   handleSubmit = () => {
-    newSubmissionApi(this.state)
+    this.state.submissions.map(submission =>
+      this.state.topic.includes(submission.topic)
+        ? this.props.dispatch(submissionError())
+        : newSubmissionApi(this.state) && this.props.dispatch(submissionVerified())
+    )
   }
 
   render () {
@@ -61,7 +77,7 @@ class SubmissionForm extends React.Component {
         <div>
           <h2 style={{ color: 'black', textAlign: 'center', fontWeight: 'lighter', fontSize: '3vh' }}>Submit a proposal for December 2019</h2>
         </div>
-        <div style={{ background: 'rgb(210, 210, 210)', margin: 'auto', borderRadius: '0.5vw', opacity: '0.8', width: '37vw', height: '50vh' }}>
+        <div style={{ background: 'rgb(210, 210, 210, 0.5)', margin: 'auto', borderRadius: '0.5vw', opacity: '0.8', width: '37vw', height: '50vh' }}>
           <Grid container direction="column" alignItems="center" >
             <FormControl style={{ width: '35vw' }} >
               <TextField
@@ -73,17 +89,17 @@ class SubmissionForm extends React.Component {
                 value={this.state.email}
                 onChange={this.handleChange}></TextField>
             </FormControl>
-            <FormControl style={{ width: '35vw' }}>
+            <FormControl style={{ width: '35vw', background: 'white' }}>
               <InputLabel style={{ paddingLeft: '1vw' }}> time</InputLabel>
               <Select
-                style={{ background: 'white', borderRadius: '0.5vw' }}
+                style={{ borderRadius: '0.5vw', color: 'black' }}
                 label="time"
                 name="time"
                 variant="outlined"
                 value={this.state.time}
                 onChange={this.handleChange}
               >
-                <MenuItem value="">
+                <MenuItem >
                   {this.state.time.length ? <p>{this.state.time}</p> : <em>Please select a time</em> }
                 </MenuItem>
                 <MenuItem value={'10.00am'} >10.00am</MenuItem>
@@ -106,10 +122,12 @@ class SubmissionForm extends React.Component {
                 name="topic"
                 variant="outlined"
                 onChange={this.handleChange}></TextField>
+              {this.props.submissionError ? <p>This topic has already been submitted please choose another one</p> : <div></div>}
             </FormControl >
             <FormControl style={{ width: '35vw' }} >
               <TextField
                 style={{ background: 'white', borderRadius: '0.5vw' }}
+                multiline
                 label="synopsis"
                 margin="normal"
                 name="synopsis"
@@ -118,10 +136,10 @@ class SubmissionForm extends React.Component {
             </FormControl >
             {this.state.synopsis.trim().replace(regex, ' ').split(' ').length <= 120
               ? <p></p>
-              : <p>you have exceeded the word limit</p>
+              : <p style={{ color: 'black', fontSize: '2vh' }}>you have exceeded the word limit</p>
             }
             {this.state.email.length && this.state.time.length && this.state.topic.length && this.state.synopsis.length
-              ? <Link to='/submitsuccess'> <Button style={{ float: 'right', marginTop: '2vh', backgroundColor: 'lightGray', color: 'black' }} variant="contained" onClick={() => this.handleSubmit()}>
+              ? <Link to='/submitsuccess'> <Button style={{ float: 'right', marginTop: '2vh', backgroundColor: 'lightGray', color: 'black' }} variant="contained" onClick={() => this.handleSubmit() }>
               Submit
               </Button>
               </Link>

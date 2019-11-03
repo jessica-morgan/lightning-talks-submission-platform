@@ -23,11 +23,17 @@ class SubmissionConfirmation extends React.Component {
           </Link>
 
         </header>
-        <Grid container direction="column" alignItems="center" style={{ margin: 'auto' }}>
+        {this.props.submissionError ? <Grid container direction="column" alignItems="center" style={{ margin: 'auto' }}>
+          <h2 style={{ color: 'black', marginBottom: '3vh', fontWeight: 'lighter', fontSize: '3vh' }}>This topic has already been submitted, please choose another one</h2>
+          <Link to="/" style={{ textDecoration: 'none' }}> <Button variant="contained" style={{ backgroundColor: 'white', color: 'black' }}>Return home</Button>
+          </Link>
+        </Grid> : <Grid container direction="column" alignItems="center" style={{ margin: 'auto' }}>
           <h2 style={{ color: 'black', marginBottom: '3vh', fontWeight: 'lighter', fontSize: '3vh' }}>Thank you, your proposal has successfully been submitted</h2>
           <Link to="/" style={{ textDecoration: 'none' }}> <Button variant="contained" style={{ backgroundColor: 'white', color: 'black' }}>Return home</Button>
           </Link>
         </Grid>
+        }
+
       </div>
     )
   }
@@ -36,7 +42,8 @@ class SubmissionConfirmation extends React.Component {
 function mapStateToProps (state) {
   return {
     userId: state.auth.userId,
-    loggedIn: state.auth.loggedIn
+    loggedIn: state.auth.loggedIn,
+    submissionError: state.submissions.error
   }
 }
 
