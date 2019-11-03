@@ -1,27 +1,21 @@
 import React from 'react'
-import { Route, withRouter } from 'react-router-dom'
-import { connect } from 'react-redux'
+import { Route } from 'react-router-dom'
 import Signin from './Signin'
-import Home from './Home'
+import SubmissionsRecord from './SubmissionRecord'
 import Register from './Register'
+import SubmissionForm from './SubmissionForm'
+import SubmissionComfirmation from './SubmissionComfirmation'
 
-class App extends React.Component {
-  render () {
-    return (
-      <div>
-        <Route exact path='/' component={Signin} />
-        <Route path='/home' component={Home} />
-        <Route path='/register' component={Register} />
-      </div>
-    )
-  }
+const App = () => {
+  return (
+    <div>
+      <Route exact path='/' component={Signin} />
+      <Route path='/home' component={SubmissionsRecord} />
+      <Route path='/register' component={Register} />
+      <Route path='/submit' component={SubmissionForm} />
+      <Route path='/submitsuccess' component={SubmissionComfirmation} />
+    </div>
+  )
 }
 
-function mapStateToProps (state) {
-  return {
-    userId: state.auth.userId,
-    loggedIn: state.auth.loggedIn
-  }
-}
-
-export default withRouter(connect(mapStateToProps)(App))
+export default App
