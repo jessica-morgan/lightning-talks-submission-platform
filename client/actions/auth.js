@@ -1,6 +1,6 @@
-import {setToken} from '../utils/token'
-import {setUserId} from '../utils/userId'
-import {registerApi, signinApi} from '../api/auth'
+import { setToken } from '../utils/token'
+import { setUserId } from '../utils/userId'
+import { registerApi, signinApi } from '../api/auth'
 
 // Actions for signing in and registering
 export const signinPending = () => {

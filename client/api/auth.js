@@ -21,4 +21,3 @@ export const signinApi = (user) => {
       if (err) throw Error('Cannot sign in member')
     })
 }
-

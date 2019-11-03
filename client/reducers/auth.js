@@ -1,5 +1,5 @@
-import {getToken, clearToken} from '../utils/token'
-import {clearUserId, getUserId} from '../utils/userId'
+import { getToken, clearToken } from '../utils/token'
+import { clearUserId, getUserId } from '../utils/userId'
 
 const initialState = {
   error: null,
