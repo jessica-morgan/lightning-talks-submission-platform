@@ -1,10 +1,12 @@
 import React from 'react'
-import {Redirect, Link, withRouter} from 'react-router-dom'
-import {connect} from 'react-redux'
-import {signin} from '../actions/auth'
+import { Redirect, Link, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { signin } from '../actions/auth'
 import Grid from '@material-ui/core/Grid'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 
-class Login extends React.Component {
+class Signin extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -14,7 +16,7 @@ class Login extends React.Component {
   }
 
   handleChange = (e) => {
-    const {name, value} = e.target
+    const { name, value } = e.target
     this.setState({
       [name]: value
     })
@@ -28,18 +30,38 @@ class Login extends React.Component {
 
   render () {
     if (this.props.loggedIn) {
-      return <Redirect to='/' />
+      return <Redirect to='/home' />
     }
 
-    const {email, password} = this.state
+    const { email, password } = this.state
     return (
-        <div>
-          <form>
+      <div>
+        <form>
           <Grid container direction="column" justify="center" alignItems="center">
-            Hello
-            </Grid>
-          </form>
-        </div>
+            <TextField
+              label="email"
+              margin="normal"
+              name="email"
+              variant="outlined"
+              onChange={this.handleChange}></TextField>
+            <TextField
+              label="password"
+              margin="normal"
+              name="password"
+              variant="outlined"
+              type="password"
+              onChange={this.handleChange} ></TextField>
+            <Button variant="contained" color="primary" onClick={this.handleSubmit}>
+              Login
+            </Button>
+            <h3>Don't have an account? </h3>
+            <Link to='/register'><Button variant="contained" color="primary" >
+              Register
+            </Button>
+            </Link>
+          </Grid>
+        </form>
+      </div>
     )
   }
 }
@@ -51,4 +73,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(Login))
+export default withRouter(connect(mapStateToProps)(Signin))
