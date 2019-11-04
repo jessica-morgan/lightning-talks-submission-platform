@@ -1,6 +1,6 @@
 # lightning-talks-submission-platform
 
-To run the application run `git clone https://github.com/jessica-morgan/lightning-talks-submission-platform.git` in your termioal
+To run the application run `git clone https://github.com/jessica-morgan/lightning-talks-submission-platform.git` in your terminal
 
 Once you have clone the project you can use `npm run db:reset` to migrate and seed the database
 
